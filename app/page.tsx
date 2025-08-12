@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -90,19 +89,28 @@ export default function TrollboxLive() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {!isConnected ? (
           <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-text-muted">Connecting to the chaos...</p>
+            <div className="text-center max-w-sm mx-auto p-8">
+              <div className="relative mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-8 h-8 border-3 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-full animate-pulse opacity-20"></div>
+              </div>
+              <h3 className="text-lg font-semibold text-text mb-2">Connecting to the Chaos...</h3>
+              <p className="text-text-muted text-sm leading-relaxed">
+                Preparing your trollbox experience. This might take a moment while we sync with the blockchain.
+              </p>
             </div>
           </div>
         ) : (
           <>
             <ChatFeed 
               messages={messages} 
-              currentUserFid={context?.user?.fid?.toString()} 
+              currentUserFid={context?.user?.fid?.toString()}
+              isLoading={false}
             />
             
-            <div className="border-t border-border p-4 bg-surface">
+            <div className="border-t border-border/50 p-4 bg-surface/50 backdrop-blur-sm">
               <InputBar 
                 onSendMessage={handleSendMessage}
                 disabled={!isConnected}
