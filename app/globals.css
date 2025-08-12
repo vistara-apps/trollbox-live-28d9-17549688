@@ -1,0 +1,68 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 340 72% 50%;
+    --accent: 250 72% 60%;
+    --bg: 0 0% 98%;
+    --surface: 0 0% 100%;
+    --danger: 0 72% 50%;
+    --text: 0 0% 10%;
+    --text-muted: 0 0% 50%;
+    --border: 0 0% 90%;
+  }
+  
+  body {
+    @apply bg-bg text-text font-sans;
+  }
+}
+
+@layer components {
+  .chat-bubble {
+    @apply bg-surface border border-border rounded-md p-3 shadow-sm transition-all duration-200;
+  }
+  
+  .chat-bubble.boosted {
+    @apply bg-gradient-to-r from-primary/10 to-accent/10 border-primary/30 shadow-lg;
+  }
+  
+  .input-bar {
+    @apply bg-surface border border-border rounded-lg px-4 py-2 text-text placeholder:text-text-muted focus:border-accent focus:outline-none focus:shadow-focus transition-all;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md transition-colors font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded-md transition-colors font-medium;
+  }
+  
+  .user-tag {
+    @apply text-sm font-medium text-accent;
+  }
+  
+  .user-tag.power-troll {
+    @apply text-primary font-bold;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
